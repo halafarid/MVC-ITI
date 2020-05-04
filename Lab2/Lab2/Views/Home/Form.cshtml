@@ -1,0 +1,29 @@
+﻿@Model Employee
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Form</title>
+</head>
+<body>
+    <form method="post">
+        <div>
+            @Html.ValidationSummary()
+        </div>
+
+        @*Your name: @Html.TextBoxFor(m => m.Name) @Html.ValidationMessageFor(m => m.Name) <br />
+        Your email: @Html.TextBoxFor(m => m.Email) @Html.ValidationMessageFor(m => m.Email) <br />
+        Your salary: @Html.TextBoxFor(m => m.Salary) @Html.ValidationMessageFor(m => m.Salary) <br />
+        Your address: @Html.TextAreaFor(m => m.Address) @Html.ValidationMessageFor(m => m.Address) <br />*@
+
+        Your name: <input type="text" name="name" /><br /><br />
+        Your email: <input type="email" name="email" /><br /><br />
+        Your salary: <input type="number" name="salary" /><br /><br />
+        Your address: <textarea cols="30" rows="10"></textarea><br /><br />
+
+        <input type="submit" name="submit" value="sign up"/>
+    </form>
+</body>
+</html>
