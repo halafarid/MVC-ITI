@@ -1,0 +1,43 @@
+﻿@model List<Employee>
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+
+<h1>Employee List</h1>
+
+@Html.ActionLink("+ Add New Employee", "Add", null, new { @class = "btn btn-primary add" })
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Address</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Employee employee in Model)
+        {
+            @Html.Partial("partials/_ColPartial", employee)
+        }
+    </tbody>
+</table>
+
+@section Styles {
+    <style>
+        .add {
+            margin: 20px 0;
+        }
+
+        .icon {
+            display: block;
+            margin-right: 10px;
+        }
+    </style>
+}

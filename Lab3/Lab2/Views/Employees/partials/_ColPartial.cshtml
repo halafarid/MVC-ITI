@@ -1,0 +1,13 @@
+﻿@model Employee
+
+<tr>
+    <th scope="row">@Model.Id</th>
+    <td>@Model.Name</td>
+    <td>@Model.Email</td>
+    <td>@Model.Salary</td>
+    <td>@Model.Gender</td>
+    <td>@Model.Address</td>
+    <td>
+        @Html.Partial("partials/_IconsPartials", Model.Id)
+    </td>
+</tr>
