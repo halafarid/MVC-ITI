@@ -1,0 +1,33 @@
+﻿@model Employee
+
+@{
+    ViewBag.Title = ViewBag.Action + " Form";
+}
+
+<h1>@ViewBag.Action Employee</h1>
+
+<form method="post">
+    @{ if (ViewBag.Action == "Edit")
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.Id)
+                @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @id = "id", @readonly = "readonly" })
+            </div>
+        }
+    }
+
+    @Html.Partial("partials/_ModalFormPartials", Model)
+
+</form>
+
+@section Styles {
+    <style>
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            width: 60%;
+        }
+    </style>
+}

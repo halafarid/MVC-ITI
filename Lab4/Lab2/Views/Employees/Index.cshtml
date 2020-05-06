@@ -1,0 +1,111 @@
+﻿@model EmployeeViewModel
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+
+<h1>Employee List</h1>
+
+<button type="button" class="btn btn-primary add" data-toggle="modal" data-target="#employee-modal">
+    + Add New Employee
+</button>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Salary</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Address</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        @foreach (Employee employee in Model.Employees)
+
+        {
+            @Html.Partial("partials/_ColPartial", employee)
+        }
+    </tbody>
+</table>
+
+@{ 
+    AjaxOptions options = new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        OnSuccess = "OnSuccess",
+        UpdateTargetId = "tbody",
+        InsertionMode = InsertionMode.InsertAfter
+    };
+}
+
+
+<div class="modal fade" id="employee-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+            @using (Ajax.BeginForm("AddAjax", options))
+            {
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Employee Form</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        @Html.Partial("partials/_ModalFormPartials", Model.Employee)
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                    </div>
+                </div>
+            }
+    </div>
+</div>
+
+
+@section Styles {
+    <style>
+        .add {
+            margin: 20px 0;
+        }
+
+        .icon {
+            display: block;
+            margin-right: 10px;
+        }
+    </style>
+}
+
+@section Scripts {
+    <script>
+        function handleDelete(id) {
+            let result = confirm("Are you sure to delete this employee?");
+            if (result) {
+                $.ajax({
+                    url: `/Employees/Delete/${id}`,
+                    type: "POST",
+                    success: function(response) {
+                        if (response) {
+                            let res = $(`#${id}`);
+                            res.remove();
+                        }
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                })
+            }
+        }
+
+        function OnSuccess(employee) {
+            $("#form0")[0].reset();
+            $("#employee-modal").modal("hide");
+        }
+    </script>
+}

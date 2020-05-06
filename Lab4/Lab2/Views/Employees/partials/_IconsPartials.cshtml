@@ -1,0 +1,13 @@
+﻿@model int
+
+<div class="btn-group btn-group-sm" role="group">
+    <a href=@Url.Action("Details", new { id = Model }) class="btn btn-outline-primary icon">
+        <i class="fas fa-eye"></i>
+    </a>
+    <a href=@Url.Action("Edit", new { id = Model }) class="btn btn-outline-success icon">
+        <i class="fas fa-edit"></i>
+    </a>
+    <a href="#" class="btn btn-outline-danger icon" onclick="handleDelete(@Model)">
+        <i class="fas fa-trash"></i>
+    </a>
+</div>
