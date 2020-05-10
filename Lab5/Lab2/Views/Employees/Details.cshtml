@@ -1,0 +1,45 @@
+﻿@model Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>Employee Details</h1>
+
+<ul class="list-group">
+    <li class="list-group-item"> 
+        <span>Name: </span>
+        @Model.Name
+    </li>
+    <li class="list-group-item">
+        <span>Email: </span>
+        @Model.Email
+    </li>
+    <li class="list-group-item">
+        <span>Salary: </span>
+        @Model.Salary
+    </li>
+    <li class="list-group-item">
+        <span>Gender: </span>
+        @Model.Gender
+    </li>
+    <li class="list-group-item">
+        <span>Address: </span>
+        @Model.Address
+    </li>
+</ul>
+
+@section Styles {
+    <style>
+        .list-group {
+            width: 40%;
+            margin: 50px auto;
+        }
+
+        span {
+            font-weight: bold;
+            display: inline-block;
+            width: 20%;
+        }
+    </style>
+}

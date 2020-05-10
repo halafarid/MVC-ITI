@@ -1,0 +1,13 @@
+﻿@model Employee
+
+<tr id="@Model.Id">
+    <td>@Model.Name</td>
+    <td>@Html.DisplayFor(m => m.Email)</td>
+    <td>@Model.Department</td>
+    <td>@Html.DisplayFor(m => m.Salary)</td>
+    <td>@Model.Gender</td>
+    <td>@Model.Address</td>
+    <td>
+        @Html.Partial("partials/_IconsPartials", Model.Id)
+    </td>
+</tr>
